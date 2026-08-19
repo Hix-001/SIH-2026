@@ -1,0 +1,32 @@
+:root {
+  /* Indian Judiciary Theme Colors */
+  --color-judiciary-deep: #0d1442;
+  --color-judiciary-blue: #1a237e;
+  --color-judiciary-royal: #3949ab;
+  --color-judiciary-accent: #5c6bc0;
+  
+  --color-justice-red: #c62828;
+  --color-justice-red-light: #e53935;
+  --color-justice-red-dark: #8e0000;
+  
+  --color-gold-accent: #f5c842;
+  --color-gold-deep: #d4af37;
+  --color-gold-light: #fbe285;
+  
+  --color-court-parchment: #fdfbf7;
+  --color-court-border: #e2e8f0;
+  
+  /* Gradients */
+  --gradient-hero: linear-gradient(135deg, #0d1442 0%, #1a237e 45%, #c62828 100%);
+  --gradient-primary: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+  --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f5c842 100%);
+  --gradient-card: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(248, 250, 252, 0.7) 100%);
+}
+
+.dark {
+  --color-court-parchment: #060a24;
+  --color-court-border: #1e293b;
+  --gradient-card: linear-gradient(135deg, #0d1442 0%, #060a24 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(13, 20, 66, 0.85) 0%, rgba(6, 10, 36, 0.7) 100%);
+}

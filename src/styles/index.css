@@ -1,0 +1,104 @@
+@import './variables.css';
+@import './animations.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 20px 50px rgba(26, 35, 126, 0.08);
+  }
+
+  .dark .glass-card {
+    background: rgba(13, 20, 66, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  }
+
+  .glass-card-dark {
+    background: rgba(13, 20, 66, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(245, 200, 66, 0.2);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .glass-card-subtle {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+  }
+
+  .dark .glass-card-subtle {
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(51, 65, 85, 0.6);
+  }
+
+  .judiciary-button-primary {
+    @apply bg-gradient-to-r from-judiciary-800 to-judiciary-700 hover:from-judiciary-900 hover:to-judiciary-800 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.98];
+  }
+
+  .judiciary-button-gold {
+    @apply bg-gradient-to-r from-gold to-accent text-judiciary-900 font-bold shadow-gold-glow hover:brightness-105 transition-all duration-300 active:scale-[0.98];
+  }
+
+  .judiciary-button-outline {
+    @apply border-2 border-judiciary-700 text-judiciary-800 dark:border-gold dark:text-gold hover:bg-judiciary-50 dark:hover:bg-judiciary-900/50 font-semibold transition-all duration-300;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0b1033;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #2b356c;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Print Styles for Legal Notice Draft */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
