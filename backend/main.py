@@ -56,6 +56,8 @@ def scrub_pii(text: str) -> str:
 
 # ----------------- API Endpoints -----------------
 
+@app.get("/")
+@app.get("/health")
 @app.get("/api/v1/health")
 def health_check():
     return {
