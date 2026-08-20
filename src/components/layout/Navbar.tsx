@@ -25,22 +25,22 @@ export const Navbar: React.FC = () => {
       <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
         
         {/* 1. Left Edge: Brand Logo & Title */}
-        <Link to="/" className="flex items-center gap-3.5 group shrink-0">
+        <Link to="/" className="flex items-center gap-2 sm:gap-3.5 group shrink-0">
           <img
             src="/logo.png"
             alt="Nyaya Setu Emblem"
-            className="w-12 h-12 object-contain drop-shadow-[0_4px_14px_rgba(212,175,55,0.3)] group-hover:scale-108 transition-transform duration-300"
+            className="w-9 h-9 sm:w-11 sm:h-11 lg:w-12 lg:h-12 object-contain drop-shadow-[0_4px_14px_rgba(212,175,55,0.3)] group-hover:scale-105 transition-transform duration-300"
           />
           <div className="flex flex-col justify-center">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-white tracking-wide font-serif leading-none">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="text-lg sm:text-xl lg:text-2xl font-bold text-white tracking-wide font-serif leading-none">
                 Nyaya <span className="text-gold">Setu</span>
               </span>
-              <span className="text-[9px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded bg-judiciary-900 text-gold border border-gold/30">
+              <span className="text-[8px] sm:text-[9px] uppercase font-bold tracking-widest px-1 sm:px-1.5 py-0.5 rounded bg-judiciary-900 text-gold border border-gold/30">
                 SIH 2026
               </span>
             </div>
-            <span className="text-[11px] text-gray-400 font-medium tracking-wider uppercase mt-1">
+            <span className="text-[10px] sm:text-[11px] text-gray-400 font-medium tracking-wider uppercase mt-0.5 sm:mt-1">
               Justice Bridge
             </span>
           </div>

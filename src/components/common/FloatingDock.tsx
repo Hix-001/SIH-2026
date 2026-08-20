@@ -57,19 +57,19 @@ export const FloatingDock: React.FC = () => {
   return (
     <>
       {/* Floating Translucent Glassmorphic Dock */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40">
+      <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-40">
         <motion.nav
           initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', damping: 22, stiffness: 260 }}
-          className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-[#060a24]/55 backdrop-blur-2xl border border-white/15 hover:border-gold/30 shadow-[0_20px_50px_rgba(0,0,0,0.65)] transition-colors"
+          className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-full bg-[#060a24]/65 backdrop-blur-2xl border border-white/15 hover:border-gold/30 shadow-[0_20px_50px_rgba(0,0,0,0.65)] transition-colors"
         >
           {dockSections.map((sec, idx) => {
             if (sec.type === 'divider') {
               return (
                 <div
                   key={`div-${idx}`}
-                  className="w-[1px] h-5 bg-white/15 mx-1 shrink-0"
+                  className="w-[1px] h-4 sm:h-5 bg-white/15 mx-0.5 sm:mx-1 shrink-0"
                 />
               );
             }
@@ -90,10 +90,10 @@ export const FloatingDock: React.FC = () => {
                   {isHovered && (
                     <motion.div
                       initial={{ opacity: 0, y: 0, x: '-50%', scale: 0.85 }}
-                      animate={{ opacity: 1, y: -52, x: '-50%', scale: 1 }}
+                      animate={{ opacity: 1, y: -50, x: '-50%', scale: 1 }}
                       exit={{ opacity: 0, y: -40, x: '-50%', scale: 0.85 }}
                       transition={{ type: 'spring', damping: 20, stiffness: 380 }}
-                      className="absolute left-1/2 top-0 px-3 py-1 rounded-full bg-[#0a1033]/95 text-white text-[12px] font-semibold border border-gold/35 shadow-2xl backdrop-blur-md whitespace-nowrap pointer-events-none z-50 flex items-center justify-center shadow-black/80"
+                      className="absolute left-1/2 top-0 px-2.5 sm:px-3 py-1 rounded-full bg-[#0a1033]/95 text-white text-[11px] sm:text-[12px] font-semibold border border-gold/35 shadow-2xl backdrop-blur-md whitespace-nowrap pointer-events-none z-50 flex items-center justify-center shadow-black/80"
                     >
                       <span>{item.label}</span>
                       <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#0a1033] rotate-45 border-r border-b border-gold/35" />
@@ -103,11 +103,11 @@ export const FloatingDock: React.FC = () => {
 
                 {/* Circular Glassmorphic Button */}
                 <motion.button
-                  whileHover={{ scale: 1.22, y: -4 }}
+                  whileHover={{ scale: 1.2, y: -4 }}
                   whileTap={{ scale: 0.92 }}
                   transition={{ type: 'spring', damping: 16, stiffness: 320 }}
                   onClick={item.action}
-                  className={`relative w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none ${
+                  className={`relative w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none ${
                     item.isActive
                       ? 'bg-judiciary-800/90 text-gold border border-gold/50 shadow-inner'
                       : item.pulse
@@ -116,7 +116,7 @@ export const FloatingDock: React.FC = () => {
                   }`}
                   aria-label={item.label}
                 >
-                  <Icon className={`w-5 h-5 ${item.pulse ? 'text-red-400' : 'text-white'}`} />
+                  <Icon className={`w-4.5 h-4.5 sm:w-5 sm:h-5 ${item.pulse ? 'text-red-400' : 'text-white'}`} />
                   
                   {item.pulse && (
                     <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
@@ -134,13 +134,13 @@ export const FloatingDock: React.FC = () => {
       {/* SOS Emergency Helplines Modal */}
       <AnimatePresence>
         {showSosModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: 'spring', damping: 20, stiffness: 280 }}
-              className="w-full max-w-lg bg-[#060a24] text-white rounded-3xl border border-red-500/40 shadow-2xl p-6 relative overflow-hidden"
+              className="w-full max-w-lg max-h-[90vh] overflow-y-auto bg-[#060a24] text-white rounded-2xl sm:rounded-3xl border border-red-500/40 shadow-2xl p-4 sm:p-6 relative"
             >
               {/* Header */}
               <div className="flex items-center justify-between pb-4 border-b border-judiciary-800">
