@@ -22,7 +22,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-[#060a24]/90 border-b border-judiciary-800/70 shadow-lg shadow-black/20 transition-all">
-      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+      <div className="w-full max-w-[1720px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
         {/* 1. Left Edge: Brand Logo & Title */}
         <Link to="/" className="flex items-center gap-3 group shrink-0">
