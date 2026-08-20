@@ -62,7 +62,7 @@ export const FloatingDock: React.FC = () => {
           initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', damping: 22, stiffness: 260 }}
-          className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-black/80 backdrop-blur-2xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.9)]"
+          className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-[#060a24]/55 backdrop-blur-2xl border border-white/15 hover:border-gold/30 shadow-[0_20px_50px_rgba(0,0,0,0.65)] transition-colors"
         >
           {dockSections.map((sec, idx) => {
             if (sec.type === 'divider') {
@@ -93,10 +93,10 @@ export const FloatingDock: React.FC = () => {
                       animate={{ opacity: 1, y: -52, x: '-50%', scale: 1 }}
                       exit={{ opacity: 0, y: -40, x: '-50%', scale: 0.85 }}
                       transition={{ type: 'spring', damping: 20, stiffness: 380 }}
-                      className="absolute left-1/2 top-0 px-3 py-1 rounded-full bg-[#10172b]/95 text-white text-[12px] font-semibold border border-white/20 shadow-2xl backdrop-blur-md whitespace-nowrap pointer-events-none z-50 flex items-center justify-center shadow-black/80"
+                      className="absolute left-1/2 top-0 px-3 py-1 rounded-full bg-[#0a1033]/95 text-white text-[12px] font-semibold border border-gold/35 shadow-2xl backdrop-blur-md whitespace-nowrap pointer-events-none z-50 flex items-center justify-center shadow-black/80"
                     >
                       <span>{item.label}</span>
-                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#10172b] rotate-45 border-r border-b border-white/20" />
+                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#0a1033] rotate-45 border-r border-b border-gold/35" />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -107,12 +107,12 @@ export const FloatingDock: React.FC = () => {
                   whileTap={{ scale: 0.92 }}
                   transition={{ type: 'spring', damping: 16, stiffness: 320 }}
                   onClick={item.action}
-                  className={`relative w-11 h-11 rounded-full flex items-center justify-center transition-colors duration-200 focus:outline-none ${
+                  className={`relative w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200 focus:outline-none ${
                     item.isActive
-                      ? 'bg-white/25 text-white border border-white/30 shadow-inner'
+                      ? 'bg-judiciary-800/90 text-gold border border-gold/50 shadow-inner'
                       : item.pulse
                       ? 'bg-red-500/20 text-red-400 hover:bg-red-500/35 border border-red-500/30'
-                      : 'bg-white/[0.07] hover:bg-white/[0.18] text-white/90 hover:text-white border border-white/5 hover:border-white/20'
+                      : 'bg-[#0d1442]/60 hover:bg-[#1a2366]/80 text-white/90 hover:text-white border border-white/10 hover:border-gold/40 shadow-sm'
                   }`}
                   aria-label={item.label}
                 >
