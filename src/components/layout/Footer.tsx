@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-judiciary-800 border border-gold/40 flex items-center justify-center">
-                <img src="/logo.svg" alt="NyayaSetu Emblem" className="w-6 h-6" />
+                <img src="/logo.png" alt="NyayaSetu Emblem" className="w-8 h-8 object-contain" />
               </div>
               <span className="text-2xl font-bold font-sans text-white">
                 Nyaya<span className="text-gold">Setu</span>

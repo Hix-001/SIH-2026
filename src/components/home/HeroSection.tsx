@@ -29,10 +29,17 @@ export const HeroSection: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="lg:col-span-7 space-y-6"
           >
-            {/* Pill Tag */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-gold/40 text-gold-light text-xs sm:text-sm font-semibold shadow-inner">
-              <Sparkles className="w-4 h-4 text-gold" />
-              <span>Smart India Hackathon 2026 • Smart Automation</span>
+            {/* Pill Tag & Brand Badge */}
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-gold/40 text-gold-light text-xs sm:text-sm font-semibold shadow-inner">
+                <Sparkles className="w-4 h-4 text-gold" />
+                <span>Smart India Hackathon 2026 • Smart Automation</span>
+              </div>
+              <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-judiciary-950/80 border border-gold/30 text-xs text-gray-200">
+                <img src="/logo.png" alt="NyayaSetu Logo" className="w-4 h-4 object-contain" />
+                <span className="font-bold text-gold">NyayaSetu</span>
+                <span className="text-[10px] text-gray-400">Justice Bridge</span>
+              </div>
             </div>
 
             {/* Hero Heading */}

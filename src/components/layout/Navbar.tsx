@@ -26,7 +26,7 @@ export const Navbar: React.FC = () => {
         {/* Brand Logo */}
         <Link to="/" className="flex items-center gap-3 group">
           <div className="w-11 h-11 rounded-2xl bg-gradient-to-br from-judiciary-800 to-judiciary-900 border border-gold/40 flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
-            <img src="/logo.svg" alt="NyayaSetu Emblem" className="w-7 h-7" />
+            <img src="/logo.png" alt="NyayaSetu Emblem" className="w-9 h-9 object-contain" />
           </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5">
