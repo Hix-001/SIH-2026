@@ -23,7 +23,7 @@ export const LanguageSelector: React.FC<{ compact?: boolean }> = ({ compact = fa
     <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`h-11 flex items-center gap-2.5 px-4 rounded-xl border text-xs sm:text-sm font-medium transition-all shadow-sm ${
+        className={`h-10 flex items-center gap-2 px-3.5 rounded-xl border text-xs sm:text-sm font-medium transition-all shadow-sm ${
           isOpen
             ? 'bg-judiciary-800 text-white border-gold/60 shadow-gold/10'
             : 'bg-judiciary-900/90 border-judiciary-700/80 text-gray-200 hover:border-gold/50 hover:bg-judiciary-800/80'
