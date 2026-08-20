@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
-  Home,
   Mic,
   Scale,
   FileText,
@@ -20,17 +19,6 @@ export const FloatingDock: React.FC = () => {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
   const dockSections = [
-    {
-      type: 'item',
-      id: 'home',
-      label: 'Home',
-      icon: Home,
-      action: () => navigate('/'),
-      isActive: location.pathname === '/'
-    },
-    {
-      type: 'divider'
-    },
     {
       type: 'item',
       id: 'voice',
@@ -93,22 +81,22 @@ export const FloatingDock: React.FC = () => {
             return (
               <div
                 key={item.id}
-                className="relative"
+                className="relative flex items-center justify-center"
                 onMouseEnter={() => setHoveredIdx(idx)}
                 onMouseLeave={() => setHoveredIdx(null)}
               >
-                {/* Floating Tooltip Label with Spring Pop-up */}
+                {/* Floating Tooltip Label with Centered Spring Pop-up */}
                 <AnimatePresence>
                   {isHovered && (
                     <motion.div
-                      initial={{ opacity: 0, y: 8, scale: 0.88 }}
-                      animate={{ opacity: 1, y: -48, scale: 1 }}
-                      exit={{ opacity: 0, y: 6, scale: 0.9 }}
-                      transition={{ type: 'spring', damping: 18, stiffness: 350 }}
-                      className="absolute left-1/2 -translate-x-1/2 -top-1 px-3 py-1 rounded-full bg-[#121829]/95 text-white text-[12px] font-medium border border-white/20 shadow-2xl backdrop-blur-md whitespace-nowrap pointer-events-none z-50 flex items-center gap-1.5"
+                      initial={{ opacity: 0, y: 0, x: '-50%', scale: 0.85 }}
+                      animate={{ opacity: 1, y: -52, x: '-50%', scale: 1 }}
+                      exit={{ opacity: 0, y: -40, x: '-50%', scale: 0.85 }}
+                      transition={{ type: 'spring', damping: 20, stiffness: 380 }}
+                      className="absolute left-1/2 top-0 px-3 py-1 rounded-full bg-[#10172b]/95 text-white text-[12px] font-semibold border border-white/20 shadow-2xl backdrop-blur-md whitespace-nowrap pointer-events-none z-50 flex items-center justify-center shadow-black/80"
                     >
                       <span>{item.label}</span>
-                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#121829] rotate-45 border-r border-b border-white/20" />
+                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#10172b] rotate-45 border-r border-b border-white/20" />
                     </motion.div>
                   )}
                 </AnimatePresence>
