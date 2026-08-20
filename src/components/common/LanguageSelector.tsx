@@ -23,24 +23,24 @@ export const LanguageSelector: React.FC<{ compact?: boolean }> = ({ compact = fa
     <div className="relative inline-block text-left" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs sm:text-sm font-medium transition-all ${
+        className={`h-11 flex items-center gap-2.5 px-4 rounded-xl border text-xs sm:text-sm font-medium transition-all shadow-sm ${
           isOpen
-            ? 'bg-judiciary-800 text-white border-judiciary-800 shadow-md'
-            : 'bg-white/80 dark:bg-judiciary-900/80 border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 hover:border-gold'
+            ? 'bg-judiciary-800 text-white border-gold/60 shadow-gold/10'
+            : 'bg-judiciary-900/90 border-judiciary-700/80 text-gray-200 hover:border-gold/50 hover:bg-judiciary-800/80'
         }`}
         aria-expanded={isOpen}
       >
-        <Globe className="w-4 h-4 text-gold" />
+        <Globe className="w-4 h-4 text-gold shrink-0" />
         <span className="font-semibold">{selectedLang.nativeName}</span>
         {!compact && (
-          <span className="text-xs text-gray-500 dark:text-gray-400">({selectedLang.name})</span>
+          <span className="text-xs text-gray-400 font-normal">({selectedLang.name})</span>
         )}
-        <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`w-3.5 h-3.5 text-gray-400 transition-transform ${isOpen ? 'rotate-180 text-gold' : ''}`} />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-white dark:bg-judiciary-900 border border-gray-200 dark:border-judiciary-800 shadow-2xl z-50 overflow-hidden py-1 max-h-80 overflow-y-auto">
-          <div className="px-4 py-2 bg-judiciary-50 dark:bg-judiciary-950/70 border-b border-gray-100 dark:border-gray-800 text-[11px] font-semibold text-judiciary-800 dark:text-gold uppercase tracking-wider">
+        <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-judiciary-900 border border-judiciary-700 shadow-2xl z-50 overflow-hidden py-1 max-h-80 overflow-y-auto">
+          <div className="px-4 py-2.5 bg-judiciary-950 border-b border-judiciary-800 text-[11px] font-bold text-gold uppercase tracking-wider">
             Select Language (Bhashini AI)
           </div>
           {supportedLanguages.map((lang) => {
@@ -54,17 +54,15 @@ export const LanguageSelector: React.FC<{ compact?: boolean }> = ({ compact = fa
                 }}
                 className={`w-full px-4 py-2.5 text-left text-sm flex items-center justify-between transition-colors ${
                   isSelected
-                    ? 'bg-judiciary-100 dark:bg-judiciary-800 text-judiciary-900 dark:text-gold font-bold'
-                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-judiciary-800/50'
+                    ? 'bg-judiciary-800 text-gold font-bold'
+                    : 'text-gray-300 hover:bg-judiciary-800/60 hover:text-white'
                 }`}
               >
-                <div className="flex flex-col">
-                  <span className="font-medium text-sm">{lang.nativeName}</span>
-                  <span className="text-[11px] text-gray-500 dark:text-gray-400">
-                    {lang.name} • {lang.region}
-                  </span>
+                <div className="flex items-center gap-2">
+                  <span className="font-medium">{lang.nativeName}</span>
+                  <span className="text-xs text-gray-400">({lang.name})</span>
                 </div>
-                {isSelected && <Check className="w-4 h-4 text-gold flex-shrink-0" />}
+                {isSelected && <Check className="w-4 h-4 text-gold" />}
               </button>
             );
           })}
