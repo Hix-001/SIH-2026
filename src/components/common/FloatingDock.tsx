@@ -56,13 +56,13 @@ export const FloatingDock: React.FC = () => {
 
   return (
     <>
-      {/* Floating Translucent Glassmorphic Dock */}
-      <div className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-40">
+      {/* Mathematically Centered Translucent Floating Dock across all viewports */}
+      <div className="fixed bottom-4 sm:bottom-6 inset-x-0 z-40 flex justify-center pointer-events-none px-4">
         <motion.nav
           initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', damping: 22, stiffness: 260 }}
-          className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-full bg-[#060a24]/65 backdrop-blur-2xl border border-white/15 hover:border-gold/30 shadow-[0_20px_50px_rgba(0,0,0,0.65)] transition-colors"
+          className="pointer-events-auto flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-full bg-[#060a24]/75 backdrop-blur-2xl border border-white/15 hover:border-gold/30 shadow-[0_20px_50px_rgba(0,0,0,0.7)] transition-colors"
         >
           {dockSections.map((sec, idx) => {
             if (sec.type === 'divider') {
@@ -139,74 +139,71 @@ export const FloatingDock: React.FC = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: 'spring', damping: 20, stiffness: 280 }}
-              className="w-full max-w-lg max-h-[90vh] overflow-y-auto bg-[#060a24] text-white rounded-2xl sm:rounded-3xl border border-red-500/40 shadow-2xl p-4 sm:p-6 relative"
+              className="glass-card w-full max-w-lg rounded-3xl p-5 sm:p-7 border border-red-500/30 shadow-2xl bg-[#0d1442] text-white relative max-h-[90vh] overflow-y-auto"
             >
-              {/* Header */}
-              <div className="flex items-center justify-between pb-4 border-b border-judiciary-800">
-                <div className="flex items-center gap-2.5 text-red-400 font-bold text-lg">
-                  <ShieldAlert className="w-6 h-6" />
-                  <span>National Emergency Legal Helplines</span>
+              <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center border border-red-500/40">
+                    <ShieldAlert className="w-6 h-6 animate-pulse" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white leading-tight">
+                      Statutory Emergency Helplines
+                    </h3>
+                    <p className="text-xs text-gray-300">
+                      Immediate Indian Government Response Portals
+                    </p>
+                  </div>
                 </div>
                 <button
                   onClick={() => setShowSosModal(false)}
-                  className="p-1.5 rounded-full hover:bg-judiciary-800 text-gray-400 hover:text-white transition-colors"
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-gray-300 flex items-center justify-center transition-colors"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
 
-              {/* Helplines Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 my-5">
-                {Object.entries(OFFICIAL_HELPLINES).map(([key, h]) => (
+              <div className="space-y-3 mb-6">
+                {Object.values(OFFICIAL_HELPLINES).map((helpline) => (
                   <div
-                    key={key}
-                    className="p-3.5 rounded-2xl bg-judiciary-900/80 border border-judiciary-800 flex flex-col justify-between"
+                    key={helpline.number}
+                    className="p-4 rounded-2xl bg-judiciary-900/80 border border-white/10 hover:border-gold/30 transition-all flex items-center justify-between gap-3"
                   >
                     <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
-                          {key.replace('_', ' ')}
-                        </span>
-                        <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-950 text-red-300 border border-red-800/40">
-                          24x7 Active
+                      <div className="flex items-center gap-2">
+                        <span className="text-base font-extrabold text-gold font-mono">
+                          {helpline.number}
                         </span>
                       </div>
-                      <h4 className="text-sm font-bold text-white">
-                        {h.title}
+                      <h4 className="text-xs font-bold text-white mt-1">
+                        {helpline.title}
                       </h4>
-                      <p className="text-xs text-gray-300 mt-1">
-                        {h.description}
+                      <p className="text-[11px] text-gray-300 mt-0.5 leading-relaxed">
+                        {helpline.description}
                       </p>
                     </div>
 
                     <a
-                      href={`tel:${h.number.replace(/[^0-9]/g, '')}`}
-                      className="mt-3 flex items-center justify-center gap-2 w-full py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-sm shadow-md transition-colors"
+                      href={`tel:${helpline.number.replace(/\D/g, '')}`}
+                      className="px-4 py-2 rounded-xl bg-red-500 hover:bg-red-600 text-white font-bold text-xs flex items-center gap-1.5 shrink-0 shadow-md transition-all active:scale-95"
                     >
-                      <PhoneCall className="w-4 h-4" />
-                      <span>Call {h.number}</span>
+                      <PhoneCall className="w-3.5 h-3.5" />
+                      <span>Call</span>
                     </a>
                   </div>
                 ))}
               </div>
 
-              {/* Triage Redirect CTA */}
-              <div className="pt-3 border-t border-judiciary-800 flex items-center justify-between">
-                <span className="text-xs text-gray-400">
-                  Need customized legal clauses for your FIR/Notice?
-                </span>
-                <button
-                  onClick={() => {
-                    setShowSosModal(false);
-                    navigate('/triage');
-                  }}
-                  className="flex items-center gap-1.5 text-xs font-bold text-gold hover:underline"
-                >
-                  <span>Start Legal Triage</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+              <div className="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-200 mb-6 leading-relaxed">
+                <strong>Golden Hour Warning:</strong> For online UPI, net-banking, or credit card fraud, dial <strong>1930</strong> within 2 hours to initiate a payment gateway lien before funds leave the banking trail.
               </div>
+
+              <button
+                onClick={() => setShowSosModal(false)}
+                className="w-full py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/10 transition-colors"
+              >
+                Close Emergency SOS
+              </button>
             </motion.div>
           </div>
         )}
