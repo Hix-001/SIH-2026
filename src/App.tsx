@@ -29,6 +29,7 @@ function App() {
                     <Route path="/results" element={<ResultsPage />} />
                     <Route path="/legal" element={<LegalPage />} />
                     <Route path="/about" element={<AboutPage />} />
+                    <Route path="/architecture" element={<AboutPage />} />
                     <Route path="/privacy" element={<PrivacyPage />} />
                     {/* Fallback */}
                     <Route path="*" element={<HomePage />} />
