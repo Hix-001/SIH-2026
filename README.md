@@ -187,7 +187,7 @@ PROTOTYPE/
 │   ├── pages/                # HomePage, TriagePage, ResultsPage, LegalPage, AboutPage, PrivacyPage
 │   └── styles/               # index.css, variables.css, animations.css
 ├── backend/                  # Dockerized FastAPI backend (main.py, Dockerfile, requirements.txt)
-├── docs/                     # API.md, PRESENTATION.md (SIH 2026 Jury Deck)
+├── docs/                     # ARCHITECTURE.md (Cloud & Flowcharts), PRESENTATION.md (SIH Jury Deck), API.md
 ├── supabase/                 # schema.sql (PostgreSQL tables with Row-Level Security)
 ├── vercel.json               # SPA routing & deployment rules
 ├── package.json              # Dependencies and build scripts
