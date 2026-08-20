@@ -56,20 +56,20 @@ export const FloatingDock: React.FC = () => {
 
   return (
     <>
-      {/* Mathematically Centered Translucent Floating Dock across all viewports */}
+      {/* Mathematically Centered Translucent Floating Dock with Comfortable Spacing */}
       <div className="fixed bottom-4 sm:bottom-6 inset-x-0 z-40 flex justify-center pointer-events-none px-4">
         <motion.nav
           initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', damping: 22, stiffness: 260 }}
-          className="pointer-events-auto flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-full bg-[#060a24]/75 backdrop-blur-2xl border border-white/15 hover:border-gold/30 shadow-[0_20px_50px_rgba(0,0,0,0.7)] transition-colors"
+          className="pointer-events-auto flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 rounded-full bg-[#060a24]/75 backdrop-blur-2xl border border-white/15 hover:border-gold/30 shadow-[0_20px_50px_rgba(0,0,0,0.75)] transition-colors"
         >
           {dockSections.map((sec, idx) => {
             if (sec.type === 'divider') {
               return (
                 <div
                   key={`div-${idx}`}
-                  className="w-[1px] h-4 sm:h-5 bg-white/15 mx-0.5 sm:mx-1 shrink-0"
+                  className="w-[1px] h-5 sm:h-6 bg-white/15 mx-1 sm:mx-1.5 shrink-0"
                 />
               );
             }
