@@ -338,11 +338,39 @@ Complainant / Aggrieved Citizen`;
             TAKE NOTICE that you are hereby called upon to comply with the above demands within strictly {notice.statutoryNoticeDays} (fifteen) days from the date of receipt of this notice, failing which my client shall be constrained to initiate appropriate civil, criminal, and statutory proceedings in the competent Courts of Law solely at your risk, cost, and consequence.
           </div>
 
-          {/* Signatory */}
-          <div className="pt-8 font-sans space-y-1 text-xs">
-            <div className="text-gray-600 dark:text-gray-400">Yours faithfully,</div>
-            <div className="font-bold text-sm text-gray-900 dark:text-white pt-6">[{notice.senderName}]</div>
-            <div className="text-gray-500 dark:text-gray-400 italic">Complainant / Aggrieved Citizen</div>
+          {/* Signatory & Official Certified Stamp */}
+          <div className="pt-8 font-sans flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-t border-gray-200 dark:border-judiciary-800/80 mt-8">
+            <div className="space-y-1 text-xs">
+              <div className="text-gray-600 dark:text-gray-400">Yours faithfully,</div>
+              <div className="font-bold text-base text-gray-900 dark:text-white pt-4">[{notice.senderName}]</div>
+              <div className="text-gray-500 dark:text-gray-400 italic">Complainant / Aggrieved Citizen</div>
+              <div className="text-[11px] text-gray-400 dark:text-gray-500 pt-1">
+                Drafted on: {notice.draftedDate}
+              </div>
+            </div>
+
+            {/* Interactive Court Certified Seal Stamp */}
+            <div className="relative group self-center sm:self-auto select-none cursor-pointer">
+              <div className="relative w-36 h-36 rounded-full border-4 border-dashed border-red-600/80 dark:border-red-500/90 flex flex-col items-center justify-center p-2 text-center transform -rotate-12 hover:rotate-0 hover:scale-105 transition-all duration-300 shadow-lg bg-red-500/5 dark:bg-red-950/20">
+                <div className="absolute inset-1 rounded-full border-2 border-red-600/60 dark:border-red-500/70" />
+                <span className="text-[8px] font-extrabold uppercase tracking-widest text-red-700 dark:text-red-400">
+                  ★ NYAYASETU ★
+                </span>
+                <span className="text-xs font-black uppercase text-red-600 dark:text-red-400 my-0.5 tracking-tight">
+                  CERTIFIED DRAFT
+                </span>
+                <div className="w-16 h-0.5 bg-red-600/60 dark:bg-red-400/60 my-0.5" />
+                <span className="text-[8px] font-bold text-red-800 dark:text-red-300">
+                  BNS 2023 • SEC 138 NI
+                </span>
+                <span className="text-[7px] text-red-600/90 dark:text-red-400/90 mt-0.5 font-mono">
+                  15-DAY NOTICE
+                </span>
+              </div>
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-judiciary-900 text-white text-[9px] font-bold py-0.5 px-2 rounded whitespace-nowrap shadow-md pointer-events-none">
+                Statutory Verified
+              </div>
+            </div>
           </div>
         </div>
       </div>
