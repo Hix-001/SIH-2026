@@ -3,7 +3,6 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import EmergencyBanner from '../common/EmergencyBanner';
 import LegalTicker from '../common/LegalTicker';
-import FloatingDock from '../common/FloatingDock';
 
 interface LayoutProps {
   children: ReactNode;
@@ -11,7 +10,7 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8f9fe] dark:bg-judiciary-950 text-gray-900 dark:text-gray-100 transition-colors duration-300 relative pb-16">
+    <div className="min-h-screen flex flex-col bg-[#060a24] text-gray-100 relative">
       <EmergencyBanner />
       <Navbar />
       <LegalTicker />
@@ -19,7 +18,6 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </main>
       <Footer />
-      <FloatingDock />
     </div>
   );
 };

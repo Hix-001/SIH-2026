@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useEffect, ReactNode } from 'react';
 
 interface ThemeContextType {
   isDark: boolean;
@@ -6,48 +6,26 @@ interface ThemeContextType {
   setTheme: (dark: boolean) => void;
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+const ThemeContext = createContext<ThemeContextType>({
+  isDark: true,
+  toggleTheme: () => {},
+  setTheme: () => {}
+});
 
 export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [isDark, setIsDark] = useState<boolean>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('nyayasetu_theme');
-      if (saved) return saved === 'dark';
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
-    }
-    return false;
-  });
-
   useEffect(() => {
-    localStorage.setItem('nyayasetu_theme', isDark ? 'dark' : 'light');
-    if (isDark) {
+    if (typeof document !== 'undefined') {
       document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
+      localStorage.setItem('nyayasetu_theme', 'dark');
     }
-  }, [isDark]);
-
-  const toggleTheme = () => {
-    setIsDark(prev => !prev);
-  };
-
-  const setTheme = (dark: boolean) => {
-    setIsDark(dark);
-  };
+  }, []);
 
   return (
-    <ThemeContext.Provider value={{ isDark, toggleTheme, setTheme }}>
+    <ThemeContext.Provider value={{ isDark: true, toggleTheme: () => {}, setTheme: () => {} }}>
       {children}
     </ThemeContext.Provider>
   );
 };
 
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error('useTheme must be used within ThemeProvider');
-  }
-  return context;
-};
-
-export default ThemeContext;
+export const useTheme = () => useContext(ThemeContext);
+export default ThemeProvider;

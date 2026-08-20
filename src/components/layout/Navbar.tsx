@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Scale, Moon, Sun, Menu, X, Shield, BookOpen, HelpCircle, FileText, ArrowRight } from 'lucide-react';
-import { useTheme } from '../../context/ThemeContext';
+import { Scale, Menu, X } from 'lucide-react';
 import LanguageSelector from '../common/LanguageSelector';
 
 export const Navbar: React.FC = () => {
-  const { isDark, toggleTheme } = useTheme();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
     { name: 'Legal Triage', path: '/triage' },
     { name: 'BNS 2023 Acts', path: '/legal' },
     { name: 'About & SIH 2026', path: '/about' },
@@ -24,7 +21,7 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/85 dark:bg-judiciary-950/85 border-b border-gray-200/80 dark:border-judiciary-800/80 transition-colors">
+    <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-[#060a24]/90 border-b border-judiciary-800/80 transition-colors">
       <div className="container mx-auto px-4 sm:px-6 h-18 flex items-center justify-between">
         {/* Brand Logo */}
         <Link to="/" className="flex items-center gap-3 group">
@@ -33,14 +30,14 @@ export const Navbar: React.FC = () => {
           </div>
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5">
-              <span className="text-xl font-extrabold text-judiciary-900 dark:text-white tracking-tight font-sans">
+              <span className="text-xl font-extrabold text-white tracking-tight font-sans">
                 Nyaya<span className="text-gold">Setu</span>
               </span>
-              <span className="text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded bg-judiciary-100 text-judiciary-800 dark:bg-judiciary-900 dark:text-gold border border-gold/30">
+              <span className="text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded bg-judiciary-900 text-gold border border-gold/30">
                 SIH 2026
               </span>
             </div>
-            <span className="text-[11px] text-gray-500 dark:text-gray-400 font-medium">
+            <span className="text-[11px] text-gray-400 font-medium">
               Citizen Legal Triage & Rights Navigator
             </span>
           </div>
@@ -54,8 +51,8 @@ export const Navbar: React.FC = () => {
               to={link.path}
               className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${
                 isActive(link.path)
-                  ? 'text-judiciary-800 dark:text-gold bg-judiciary-50 dark:bg-judiciary-900/90 shadow-sm'
-                  : 'text-gray-700 dark:text-gray-300 hover:text-judiciary-800 dark:hover:text-gold hover:bg-gray-100/70 dark:hover:bg-judiciary-900/40'
+                  ? 'text-gold bg-judiciary-900/90 shadow-sm border border-gold/20'
+                  : 'text-gray-300 hover:text-gold hover:bg-judiciary-900/40'
               }`}
             >
               {link.name}
@@ -67,15 +64,6 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center gap-3">
           {/* Language Selector */}
           <LanguageSelector />
-
-          {/* Dark / Light Toggle */}
-          <button
-            onClick={toggleTheme}
-            className="p-2.5 rounded-xl border border-gray-200 dark:border-judiciary-800 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-judiciary-900 transition-colors"
-            aria-label="Toggle theme"
-          >
-            {isDark ? <Sun className="w-4 h-4 text-gold" /> : <Moon className="w-4 h-4 text-judiciary-800" />}
-          </button>
 
           {/* Quick Triage CTA */}
           <Link
@@ -89,7 +77,7 @@ export const Navbar: React.FC = () => {
           {/* Mobile Hamburger Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2.5 rounded-xl border border-gray-200 dark:border-judiciary-800 text-gray-700 dark:text-gray-200"
+            className="lg:hidden p-2.5 rounded-xl border border-judiciary-800 text-gray-200"
             aria-label="Open mobile menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -99,7 +87,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white dark:bg-judiciary-950 border-b border-gray-200 dark:border-judiciary-800 px-4 pt-3 pb-6 space-y-2 shadow-2xl">
+        <div className="lg:hidden bg-[#060a24] border-b border-judiciary-800 px-4 pt-3 pb-6 space-y-2 shadow-2xl">
           {navLinks.map((link) => (
             <Link
               key={link.path}
@@ -107,8 +95,8 @@ export const Navbar: React.FC = () => {
               onClick={() => setMobileMenuOpen(false)}
               className={`block px-4 py-3 rounded-xl text-sm font-semibold transition-all ${
                 isActive(link.path)
-                  ? 'text-judiciary-800 dark:text-gold bg-judiciary-50 dark:bg-judiciary-900'
-                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-judiciary-900/50'
+                  ? 'text-gold bg-judiciary-900 border border-gold/20'
+                  : 'text-gray-300 hover:bg-judiciary-900/50'
               }`}
             >
               {link.name}
