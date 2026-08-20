@@ -38,8 +38,8 @@ export const Navbar: React.FC = () => {
                 SIH 2026
               </span>
             </div>
-            <span className="text-[11px] text-gray-400 font-medium">
-              Citizen Legal Triage & Rights Navigator
+            <span className="text-[11px] text-gray-400 font-medium tracking-wide">
+              Justice Bridge
             </span>
           </div>
         </Link>

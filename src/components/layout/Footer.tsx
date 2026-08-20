@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-xs text-gray-300 leading-relaxed">
-              Citizen Legal Triage & Automated Rights Navigator. Transforming statutory complexity into clear, actionable, and rights-focused guidance for 1.4 Billion citizens.
+              <strong className="text-gold font-semibold">Justice Bridge</strong> • AI-Powered Citizen Legal Triage & Automated Rights Navigator. Transforming statutory complexity into clear, actionable, and rights-focused guidance for 1.4 Billion citizens.
             </p>
             <div className="flex items-center gap-2 pt-1 text-xs text-gold">
               <Award className="w-4 h-4" />
