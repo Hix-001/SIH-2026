@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
+  Home,
   Mic,
   Scale,
   FileText,
@@ -18,34 +19,48 @@ export const FloatingDock: React.FC = () => {
   const [showSosModal, setShowSosModal] = useState(false);
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
 
-  const dockItems = [
+  const dockSections = [
     {
+      type: 'item',
+      id: 'home',
+      label: 'Home',
+      icon: Home,
+      action: () => navigate('/'),
+      isActive: location.pathname === '/'
+    },
+    {
+      type: 'divider'
+    },
+    {
+      type: 'item',
       id: 'voice',
       label: 'Voice Triage',
       icon: Mic,
-      color: 'from-amber-500 to-red-500',
       action: () => navigate('/triage')
     },
     {
+      type: 'item',
       id: 'bns',
       label: 'BNS 2023 Directory',
       icon: Scale,
-      color: 'from-blue-600 to-indigo-600',
       action: () => navigate('/legal'),
       isActive: location.pathname === '/legal'
     },
     {
+      type: 'item',
       id: 'notice',
-      label: 'Demand Notice Drafter',
+      label: 'Notice Drafter',
       icon: FileText,
-      color: 'from-emerald-600 to-teal-600',
       action: () => navigate('/triage')
     },
     {
+      type: 'divider'
+    },
+    {
+      type: 'item',
       id: 'sos',
       label: 'Emergency SOS (1930)',
       icon: PhoneCall,
-      color: 'from-red-600 to-rose-700',
       action: () => setShowSosModal(true),
       pulse: true
     }
@@ -53,16 +68,26 @@ export const FloatingDock: React.FC = () => {
 
   return (
     <>
-      {/* Floating Glassmorphic Quick-Action Dock */}
+      {/* Floating Translucent Glassmorphic Dock */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40">
-        <motion.div
-          initial={{ y: 50, opacity: 0 }}
+        <motion.nav
+          initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ type: 'spring', damping: 20, stiffness: 200 }}
-          className="flex items-center gap-2.5 p-2 px-4 rounded-full bg-[#060a24]/95 text-white backdrop-blur-2xl border border-gold/45 shadow-2xl shadow-black/80"
+          transition={{ type: 'spring', damping: 22, stiffness: 260 }}
+          className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-black/80 backdrop-blur-2xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.9)]"
         >
-          {dockItems.map((item, idx) => {
-            const Icon = item.icon;
+          {dockSections.map((sec, idx) => {
+            if (sec.type === 'divider') {
+              return (
+                <div
+                  key={`div-${idx}`}
+                  className="w-[1px] h-5 bg-white/15 mx-1 shrink-0"
+                />
+              );
+            }
+
+            const item = sec;
+            const Icon = item.icon!;
             const isHovered = hoveredIdx === idx;
 
             return (
@@ -72,53 +97,62 @@ export const FloatingDock: React.FC = () => {
                 onMouseEnter={() => setHoveredIdx(idx)}
                 onMouseLeave={() => setHoveredIdx(null)}
               >
-                {/* Tooltip Label */}
+                {/* Floating Tooltip Label with Spring Pop-up */}
                 <AnimatePresence>
                   {isHovered && (
                     <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.85 }}
-                      animate={{ opacity: 1, y: -45, scale: 1 }}
-                      exit={{ opacity: 0, y: 5, scale: 0.85 }}
-                      transition={{ duration: 0.15 }}
-                      className="absolute left-1/2 -translate-x-1/2 -top-2 px-2.5 py-1 rounded-lg bg-[#0d1442] text-white border border-gold/40 text-[11px] font-semibold whitespace-nowrap shadow-xl pointer-events-none z-50 flex items-center gap-1.5"
+                      initial={{ opacity: 0, y: 8, scale: 0.88 }}
+                      animate={{ opacity: 1, y: -48, scale: 1 }}
+                      exit={{ opacity: 0, y: 6, scale: 0.9 }}
+                      transition={{ type: 'spring', damping: 18, stiffness: 350 }}
+                      className="absolute left-1/2 -translate-x-1/2 -top-1 px-3 py-1 rounded-full bg-[#121829]/95 text-white text-[12px] font-medium border border-white/20 shadow-2xl backdrop-blur-md whitespace-nowrap pointer-events-none z-50 flex items-center gap-1.5"
                     >
                       <span>{item.label}</span>
-                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#0d1442] rotate-45 border-r border-b border-gold/40" />
+                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#121829] rotate-45 border-r border-b border-white/20" />
                     </motion.div>
                   )}
                 </AnimatePresence>
 
-                {/* Dock Button */}
+                {/* Circular Glassmorphic Button */}
                 <motion.button
-                  whileHover={{ scale: 1.28, y: -4 }}
+                  whileHover={{ scale: 1.22, y: -4 }}
                   whileTap={{ scale: 0.92 }}
+                  transition={{ type: 'spring', damping: 16, stiffness: 320 }}
                   onClick={item.action}
-                  className={`relative p-2.5 sm:p-3 rounded-full text-white bg-gradient-to-br ${item.color} shadow-md transition-shadow hover:shadow-gold/40 hover:shadow-lg focus:outline-none flex items-center justify-center`}
+                  className={`relative w-11 h-11 rounded-full flex items-center justify-center transition-colors duration-200 focus:outline-none ${
+                    item.isActive
+                      ? 'bg-white/25 text-white border border-white/30 shadow-inner'
+                      : item.pulse
+                      ? 'bg-red-500/20 text-red-400 hover:bg-red-500/35 border border-red-500/30'
+                      : 'bg-white/[0.07] hover:bg-white/[0.18] text-white/90 hover:text-white border border-white/5 hover:border-white/20'
+                  }`}
                   aria-label={item.label}
                 >
-                  <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                  <Icon className={`w-5 h-5 ${item.pulse ? 'text-red-400' : 'text-white'}`} />
+                  
                   {item.pulse && (
                     <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500 border border-white"></span>
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500 border border-black"></span>
                     </span>
                   )}
                 </motion.button>
               </div>
             );
           })}
-        </motion.div>
+        </motion.nav>
       </div>
 
       {/* SOS Emergency Helplines Modal */}
       <AnimatePresence>
         {showSosModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="w-full max-w-lg bg-[#060a24] text-white rounded-3xl border-2 border-red-500/50 shadow-2xl p-6 relative overflow-hidden"
+              transition={{ type: 'spring', damping: 20, stiffness: 280 }}
+              className="w-full max-w-lg bg-[#060a24] text-white rounded-3xl border border-red-500/40 shadow-2xl p-6 relative overflow-hidden"
             >
               {/* Header */}
               <div className="flex items-center justify-between pb-4 border-b border-judiciary-800">
@@ -128,7 +162,7 @@ export const FloatingDock: React.FC = () => {
                 </div>
                 <button
                   onClick={() => setShowSosModal(false)}
-                  className="p-1.5 rounded-full hover:bg-judiciary-800 text-gray-400 hover:text-white"
+                  className="p-1.5 rounded-full hover:bg-judiciary-800 text-gray-400 hover:text-white transition-colors"
                 >
                   <X className="w-5 h-5" />
                 </button>
